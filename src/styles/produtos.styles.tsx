@@ -38,6 +38,54 @@ const styles = StyleSheet.create({
           color: 'green',
           marginTop: 10,
         },
+        complementosContainer: {
+          marginTop: 16,
+        },
+        observacaoContainer: {
+          marginTop: 16,
+        },
+        input: {
+          borderWidth: 1,
+          borderColor: '#ccc',
+          padding: 8,
+          marginTop: 8,
+          height: 40,
+        }, complementoItem: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          backgroundColor: '#F8F8F8',
+          padding: 10,
+          borderRadius: 10,
+          marginBottom: 10,
+        },
+        complementoImagem: {
+          width: 40,
+          height: 40,
+          marginRight: 10,
+          borderRadius: 20,
+        },
+        complementoNome: {
+          flex: 1,
+          fontSize: 16,
+        },
+        
+        checkbox: {
+          width: 20,
+          height: 20,
+          borderRadius: 10,
+          borderWidth: 2,
+          borderColor: '#555',
+        },
+        checkboxSelecionado: {
+          backgroundColor: '#28A745',
+          borderColor: '#28A745',
+        },
+        
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginVertical: 10,
+  },
       });
       
 
