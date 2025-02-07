@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
      "scheme": "your-app-scheme",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_ifome(1).png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/logo_ifome(1).png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

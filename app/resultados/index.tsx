@@ -27,7 +27,7 @@ interface ResultadosPesquisaProps {
 }
 
 const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos }) => {
-  const router = useRouter(); // Hook do Expo Router
+  const router = useRouter(); 
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>

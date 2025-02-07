@@ -46,31 +46,50 @@ export default function Home() {
         { id: "5", title:'R$',image: "https://i0.wp.com/mercadoeconsumo.com.br/wp-content/uploads/2019/04/Que-comida-saud%C3%A1vel-que-nada-brasileiro-gosta-de-fast-food.jpg?fit=1600%2C1067&ssl=1", description: "Descrição do Item 5" },
         { id: "6", title:'R$',image: "https://i0.wp.com/mercadoeconsumo.com.br/wp-content/uploads/2019/04/Que-comida-saud%C3%A1vel-que-nada-brasileiro-gosta-de-fast-food.jpg?fit=1600%2C1067&ssl=1", description: "Descrição do Item 6" },
       ];
-      const [userAddress, setUserAddress] = useState('');
+    
+      
 
-  useEffect(() => {
-    // Função para pegar o endereço do AsyncStorage
-    const fetchUserAddress = async () => {
-      try {
-        // Tenta pegar o valor do 'userAddress' do AsyncStorage
-        const address = await AsyncStorage.getItem('userEndereco');
-        
-        if (address !== null) {
-          // Se encontrou, seta no estado
-          setUserAddress(address);
-        } else {
-          // Caso não tenha endereço, usa um valor padrão
-          setUserAddress('Endereço não definido');
+      
+      const Header = () => {
+        const [userName, setUserName] = useState<string | null>(null);
+        const [userAddress, setUserAddress] = useState<string | null>(null);
+      
+        useEffect(() => {
+          const loadUser = async () => {
+            try {
+              const name = await AsyncStorage.getItem('userNome');
+              const address = await AsyncStorage.getItem('userEndereco');
+              if (name && address) {
+                setUserName(name);
+                setUserAddress(address);
+              } else {
+                setUserName('Visitante');
+                setUserAddress('Endereço não disponível');
+              }
+            } catch (error) {
+              console.error('Erro ao carregar dados do usuário:', error);
+            }
+          };
+      
+          loadUser(); 
+        }, []); 
+      
+        if (userName === null || userAddress === null) {
+          return <Text>Carregando...</Text>;
         }
-      } catch (error) {
-        console.log('Erro ao buscar endereço:', error);
-      }
-    };
-
-    // Chama a função quando o componente for montado
-    fetchUserAddress();
-  }, []);
-
+      
+        return (
+          <View >
+            <Text style={
+            {fontWeight: 'bold',
+             fontSize: 20
+            }
+          }> {userAddress}</Text>
+          </View>
+        );
+      };
+      
+  
       
   return (
     
@@ -82,11 +101,8 @@ export default function Home() {
         backgroundColor: '#fff',
         marginTop:20
       }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-          {userAddress}
-        </Text>
+         <Header />
 
-        {/* Ícone de Notificação */}
         <TouchableOpacity>
          <IconButton
          icon="bell-ring"

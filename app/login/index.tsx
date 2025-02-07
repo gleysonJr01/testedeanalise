@@ -16,21 +16,34 @@ const Login = () => {
 
   const login = async () => {
     try {
-    
-      const storedEmail = await AsyncStorage.getItem("userEmail");
-      const storedPassword = await AsyncStorage.getItem("userSenha");
-
-      if (email === storedEmail && password === storedPassword) {
-        handleLogin(); 
+      const response = await fetch('https://ifood-backend-aedi.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          userType: 'CLIENT',
+        }),
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      if (response.ok) {
+        await AsyncStorage.setItem('userToken', data.token);
+  
+        handleLogin();
       } else {
-        Alert.alert("Erro", "Credenciais inválidas!");
+        Alert.alert("Erro", data.message || "Credenciais inválidas!");
       }
     } catch (error) {
       console.log(error);
-      Alert.alert("Erro", "Erro ao verificar as credenciais!");
+      Alert.alert("Erro", "Erro ao tentar fazer login. Verifique sua conexão.");
     }
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -41,6 +54,7 @@ const Login = () => {
           onPress={() => router.push("/")}
         />
       </View>
+      
       <Text>Email</Text>
       <TextInput
         label="Email"

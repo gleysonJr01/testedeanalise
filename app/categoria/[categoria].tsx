@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, ScrollView, TouchableOpacity, FlatList, Image } from "react-native";
+import { View, Text, ScrollView, FlatList, Image } from "react-native";
 import styles from "../../src/styles/categorias.style";
 import { IconButton } from "react-native-paper";
 
 interface Produto {
   id: number;
-  nome: string;
+  nome: string; 
   preco: number;
   categoria: string;
   maisVendido: boolean;
