@@ -25,20 +25,20 @@ const CategoriaDetalhe: React.FC<CategoriaDetalheProps> = ({ categoria, produtos
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-      <IconButton
-    icon="arrow-left"
-    iconColor='black'
-    size={30}
-    onPress={() => onBack()}
-  />
+        <IconButton
+          icon="arrow-left"
+          iconColor='black'
+          size={30}
+          onPress={onBack}
+        />
         <Text style={styles.title}>{categoria}</Text>
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.sectionTitle}>Produtos Disponíveis</Text>
-        <View style={styles.tentando}>
+        <View style={styles.produtosWrapper}>
           {produtos.map((produto) => (
-            <View key={produto.id} style={styles.sectionProduts}>
+            <View key={produto.id} style={styles.produtoItem}>
               <Image source={{ uri: produto.imagem }} style={styles.productImages} />
               <Text style={styles.listItemTitle}>{produto.nome}</Text>
               <Text style={styles.listItemDescription}>R$ {produto.preco.toFixed(2)}</Text>
@@ -84,6 +84,5 @@ const CategoriaDetalhe: React.FC<CategoriaDetalheProps> = ({ categoria, produtos
     </View>
   );
 };
-
 
 export default CategoriaDetalhe;

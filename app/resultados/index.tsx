@@ -36,7 +36,11 @@ const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos
           {lojas.map((loja) => (
             <View key={loja.id} style={styles.promoListItem}>
               <View style={styles.promoListItemInfo}>
-                <Image source={{ uri: loja.image }} style={styles.listItemImage} />
+              <TouchableOpacity
+                    onPress={() => router.push(`/estabelecimento/${loja.id}`)} 
+                    style={styles.productItem}
+                  >  <Image source={{ uri: loja.image }} style={styles.listItemImage} /></TouchableOpacity>
+               
                 <View style={{ flex: 1 }}>
                   <Text style={styles.restaurantName}>{loja.nome}</Text>
                   <Text style={styles.restaurantCategory}>{loja.categoria}</Text>
@@ -48,7 +52,7 @@ const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos
                 keyExtractor={(produto) => produto.id.toString()}
                 renderItem={({ item }) => (
                   <TouchableOpacity
-                    onPress={() => router.push(`/produto/${item.id}`)} // Navegar para a página de detalhes do produto
+                    onPress={() => router.push(`/produto/${item.id}`)} 
                     style={styles.productItem}
                   >
                     <Image source={{ uri: item.imagem }} style={styles.productImage} />

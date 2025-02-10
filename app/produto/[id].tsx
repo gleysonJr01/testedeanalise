@@ -66,7 +66,6 @@ const ProdutoDetalhes: React.FC<{ produto: Produto | null }> = ({ produto }) => 
     );
   }
 
-  // Definindo a função que vai adicionar o produto ao pedido
   const dispatch = useDispatch();
   const adicionarAoPedido = () => {
     if (produto) {
@@ -78,7 +77,6 @@ const ProdutoDetalhes: React.FC<{ produto: Produto | null }> = ({ produto }) => 
         complementos: complementosSelecionados,
       };
 
-      // Despachar a ação para adicionar o produto ao pedido
       dispatch(addPedido(pedidoItem));
       Alert.alert("Sucesso", "Pedido adicionado com sucesso! Agora confirme-o "); 
     }

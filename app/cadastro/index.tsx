@@ -36,7 +36,7 @@ const Cadastro = () => {
           address: endereco, 
         }),
       });
-
+          
       const data = await response.json();
 
       if (response.ok) {
