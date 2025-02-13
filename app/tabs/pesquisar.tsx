@@ -16,6 +16,8 @@
       { id: 3, nome: "Pizza Marguerita", preco: 25.99, categoria: "Pizza", maisVendido: true,lojaId: 3, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
       { id: 7, nome: "Pizza Portuguesa", preco: 25.99, categoria: "Pizza", maisVendido: true,lojaId: 3, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
       { id: 4, nome: "Sushi Combo", preco: 39.99, categoria: "Sushi", maisVendido: false,lojaId: 4, promocao: true, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
+      { id: 8, nome: "Pizza Calabresa", preco: 25.99, categoria: "Pizza", maisVendido: true,lojaId: 3, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
+      { id: 9, nome: "Pizza de Chocolate", preco: 25.99, categoria: "Pizza", maisVendido: true,lojaId: 3, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },  
       { id: 5, nome: "Hambúrguer Artesanal", preco: 18.99, categoria: "Lanches", maisVendido: true,lojaId: 5, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
       { id: 6, nome: "Pizza Calabresa", preco: 25.99, categoria: "Pizza", maisVendido: true,lojaId: 6, promocao: false, imagem: "https://i.ytimg.com/vi/lfSrHbm18lo/hqdefault.jpg" },
 

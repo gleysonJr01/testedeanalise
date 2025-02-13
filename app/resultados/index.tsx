@@ -27,7 +27,7 @@ interface ResultadosPesquisaProps {
 }
 
 const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos }) => {
-  const router = useRouter(); 
+  const router = useRouter();
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -36,12 +36,13 @@ const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos
           {lojas.map((loja) => (
             <View key={loja.id} style={styles.promoListItem}>
               <View style={styles.promoListItemInfo}>
-              <TouchableOpacity
-                    onPress={() => router.push(`/estabelecimento/${loja.id}`)} 
-                    style={styles.productItem}
-                  >  <Image source={{ uri: loja.image }} style={styles.listItemImage} /></TouchableOpacity>
-               
-                <View style={{ flex: 1 }}>
+                <TouchableOpacity
+                  onPress={() => router.push(`/estabelecimento/${loja.id}`)}
+                  style={styles.productItem}
+                >
+                  <Image source={{ uri: loja.image }} style={styles.listItemImage} />
+                </TouchableOpacity>
+                <View style={styles.storeInfo}>
                   <Text style={styles.restaurantName}>{loja.nome}</Text>
                   <Text style={styles.restaurantCategory}>{loja.categoria}</Text>
                 </View>
@@ -49,15 +50,16 @@ const ResultadosPesquisa: React.FC<ResultadosPesquisaProps> = ({ lojas, produtos
               <FlatList
                 horizontal
                 data={produtos.filter((produto) => produto.lojaId === loja.id)}
+                showsHorizontalScrollIndicator={false} 
                 keyExtractor={(produto) => produto.id.toString()}
                 renderItem={({ item }) => (
                   <TouchableOpacity
-                    onPress={() => router.push(`/produto/${item.id}`)} 
+                    onPress={() => router.push(`/produto/${item.id}`)}
                     style={styles.productItem}
                   >
                     <Image source={{ uri: item.imagem }} style={styles.productImage} />
                     <Text style={styles.productName}>{item.nome}</Text>
-                    <Text style={styles.productPrice}>R$ {item.preco.toFixed(2)}</Text>
+                    <Text style={styles.listItemDescription}>R$ {item.preco.toFixed(2)}</Text>
                   </TouchableOpacity>
                 )}
               />

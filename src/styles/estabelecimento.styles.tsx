@@ -4,33 +4,90 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 16,
+  }, 
+  imageFloating: {
+    width: 70,
+    height: 70,
+    borderRadius: 35, 
+    position: 'absolute',
+    top: -30, 
+    alignSelf: 'center', 
+  
   },
-
+  text:{ fontSize: 18,
+    top:15,
+    color: '#777',
+  },
+  
+  containerImage: {
+    position: 'relative', 
+  },
+  iconButton: {
+    position: 'absolute',
+    top: 10, 
+    left: 10, 
+    backgroundColor: '#000'
+  },
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+  },
+  navButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    borderWidth:1,
+    marginHorizontal: 5,
+  },
+  navText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  productsContainer:{
+    padding:16,
+  },
+  divider: {
+  
+      height: 1,  
+      backgroundColor: '#000',  
+      width: '100%', 
+      top:15,
+      marginVertical: 8, 
+    },
+    
   image: {
-    width: '100%',
-    height: 250,
-    resizeMode: 'cover',
-    borderRadius: 8,
+    
+      width: '100%',
+      height: 180,
   },
   
   informationContainer: {
-    paddingVertical: 20,
-    alignItems: 'center',
+    width: 300,
+    padding:25,
+    alignItems: 'flex-start',
+    marginLeft:35,
+    borderWidth:1,
+    backgroundColor:'#fff',
+    marginTop:-40,
+    borderRadius: 15
   },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
+    top:20
   },
   category: {
     fontSize: 18,
+    top:15,
     color: '#777',
   },
 
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginVertical: 10,
   },
   tentando: {
     flexDirection: 'row',
@@ -38,13 +95,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sectionProduts: {
-    width: '45%', 
+    width: '33%', 
     marginBottom: 16,
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     padding: 8,
-    borderRadius: 8,
-    elevation: 3,
   },
   productImages: {
     width: '100%',

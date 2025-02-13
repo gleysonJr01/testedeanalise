@@ -17,13 +17,28 @@ const PedidosScreen = () => {
 
   const renderItem = ({ item }: { item: PedidoItem }) => (
     <View style={styles.itemContainer}>
-      <Text style={styles.itemName}>{item.nome}</Text>
-      <Text style={styles.itemPrice}>R$ {(item.preco * item.quantidade).toFixed(2)}</Text>
-      <Text style={styles.itemDetails}>Quantidade: {item.quantidade}</Text>
-      <TouchableOpacity onPress={() => removerItem(item.id)} style={styles.removeButton}>
-        <Text style={styles.removeButtonText}>Remover do pedido</Text>
-      </TouchableOpacity>
+      
+    <View style={styles.itemContent}>
+      <Image
+        source={{ uri: item.image}}  
+        style={styles.itemImage}    
+        resizeMode="cover"
+      />
+      
+      <View style={styles.itemInfo}>
+        <Text style={styles.itemName}>{item.nome}</Text>
+        
+        <Text style={styles.itemPrice}>R$ {(item.preco * item.quantidade).toFixed(2)}</Text>
+        <Text style={styles.itemDetails}>Quantidade: {item.quantidade}</Text>
+        
+        <TouchableOpacity onPress={() => removerItem(item.id)} style={styles.removeButton}>
+          <Text style={styles.removeButtonText}>Remover do pedido</Text>
+        </TouchableOpacity>
+      </View>
     </View>
+  </View>
+
+
   );
 
   return (

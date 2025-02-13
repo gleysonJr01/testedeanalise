@@ -3,6 +3,16 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
         container: {
         },
+        containerImage: {
+          position: 'relative', 
+        },
+      
+        iconButton: {
+          position: 'absolute',
+          top: 10, 
+          left: 10, 
+          backgroundColor: '#000'
+        },
         image: {
           width: '100%',
           height: 250,

@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ onBackPress, backgroundColor = 'rgba(0,
   return (
     <View style={[styles.header, { backgroundColor }]}>
       <IconButton
-        icon="arrow-left"
+        icon="chevron-left"
         iconColor="red"
         size={30}
         onPress={onBackPress}
@@ -22,12 +22,11 @@ const Header: React.FC<HeaderProps> = ({ onBackPress, backgroundColor = 'rgba(0,
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
-    height: 60,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingLeft: 15,
-    paddingTop: 10,
+    width: "auto",
+    height: 60, // Ocupa a altura do container pai
+    alignItems: "center",
+    justifyContent: "center", // Centraliza verticalmente o ícone
+    paddingLeft: 0, // Evita deslocamento lateral
   },
 });
 

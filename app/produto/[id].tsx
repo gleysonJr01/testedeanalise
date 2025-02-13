@@ -75,22 +75,26 @@ const ProdutoDetalhes: React.FC<{ produto: Produto | null }> = ({ produto }) => 
         preco: produto.preco,
         quantidade: quantidade,
         complementos: complementosSelecionados,
+        image: produto.imagem
       };
 
       dispatch(addPedido(pedidoItem));
-      Alert.alert("Sucesso", "Pedido adicionado com sucesso! Agora confirme-o "); 
+      router.push('tabs/pedidos'); 
     }
   };
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
-         <IconButton
-    icon="arrow-left"
-    iconColor={'black'}
-    size={20}
-    onPress={() => router.push('/tabs/pesquisar')}
-  />
+           <View style={styles.containerImage}>
       <Image source={{ uri: produto.imagem }} style={styles.image} />
+      <IconButton
+        icon="chevron-left"
+        iconColor="white"
+        size={30}
+        onPress={() => router.push('/tabs/pesquisar')}
+        style={styles.iconButton}
+      />
+    </View>
       <View style={styles.informationContainer}>
         <Text style={styles.name}>{produto.nome}</Text>
         <Text style={styles.category}>{produto.categoria}</Text>

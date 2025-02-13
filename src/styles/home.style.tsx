@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
     },
     section: {
-      padding: 20,
+      padding: 15,
     },
     sectionContent: {
         fontSize: 16,
         color: "#333",
-        marginBottom:20
+        marginBottom:15
       },
     sectionTitle: {
       fontSize: 18,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
       fontSize: 14,
       fontWeight: "bold",
       marginBottom: 8, 
-    },
+   },
     listItemImage: {
       width: 80,
       height: 80,
@@ -68,15 +68,15 @@ const styles = StyleSheet.create({
     },
     
     listItemLarge: {
-      alignItems: "center",
+      alignItems: 'flex-start',
       marginRight: 20,
     },
     listItemImageLarge: {
       marginTop:20,
-      width: 150, // Imagem maior e quadrada
+      width: 150, 
       height: 150,
       borderRadius: 20,
-      marginBottom: 10, // Espaço entre a imagem e a descrição
+      marginBottom: 10, 
     },
     listItemDescription: {
       fontSize: 14,
@@ -84,11 +84,11 @@ const styles = StyleSheet.create({
       textAlign: "center",
     },
     promoListItem: {
-      flexDirection: "row", // Imagem e informações lado a lado
+      flexDirection: "row", 
       alignItems: "center",
       padding: 10,
       backgroundColor: "#fff",
-      marginRight: 20, // Espaço horizontal entre itens
+      marginRight: 20, 
     },
   
     promoListItemImage: {

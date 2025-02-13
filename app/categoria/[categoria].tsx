@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, ScrollView, FlatList, Image } from "react-native";
+import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from "react-native";
 import styles from "../../src/styles/categorias.style";
-import { IconButton } from "react-native-paper";
+import Header from "../../src/components/header";
+import { router } from "expo-router";
 
 interface Produto {
   id: number;
@@ -24,24 +25,24 @@ interface CategoriaDetalheProps {
 const CategoriaDetalhe: React.FC<CategoriaDetalheProps> = ({ categoria, produtos, maisVendidos, promocao, onBack }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <IconButton
-          icon="arrow-left"
-          iconColor='black'
-          size={30}
-          onPress={onBack}
-        />
-        <Text style={styles.title}>{categoria}</Text>
-      </View>
-
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.sectionTitle}>Produtos Disponíveis</Text>
+      <View style={styles.headerRow}>
+  <Header onBackPress={onBack} />
+  <Text style={styles.headerTitle}>Produtos Disponíveis</Text>
+</View>
         <View style={styles.produtosWrapper}>
           {produtos.map((produto) => (
             <View key={produto.id} style={styles.produtoItem}>
+              <View style={styles.ListItemInfo}>
+                <TouchableOpacity
+                      style={styles.produtoItem} // Garante que a área clicável envolva tudo
+                  onPress={() => router.push(`/produto/${produto.id}`)}
+                >
               <Image source={{ uri: produto.imagem }} style={styles.productImages} />
               <Text style={styles.listItemTitle}>{produto.nome}</Text>
               <Text style={styles.listItemDescription}>R$ {produto.preco.toFixed(2)}</Text>
+              </TouchableOpacity>
+              </View>
             </View>
           ))}
         </View>

@@ -184,11 +184,11 @@ export default function Home() {
       <View style={styles.listItemLarge}>
         
         <Image source={{ uri: item.image }} style={styles.listItemImageLarge} />
-        
-        <Text style={styles.listItemTitle}>{item.title}</Text>
         <Text style={styles.listItemDescription}>
           {item.description}
         </Text>
+        <Text style={styles.listItemTitle}>{item.title}</Text>
+     
       </View>
     )}
   />
@@ -206,11 +206,11 @@ export default function Home() {
       <View style={styles.listItemLarge}>
         
         <Image source={{ uri: item.image }} style={styles.listItemImageLarge} />
-        
-        <Text style={styles.listItemTitle}>{item.title}</Text>
         <Text style={styles.listItemDescription}>
           {item.description}
         </Text>
+        <Text style={styles.listItemTitle}>{item.title}</Text>
+      
       </View>
     )}
   />
@@ -228,11 +228,8 @@ export default function Home() {
       <View style={styles.listItemLarge}>
         
         <Image source={{ uri: item.image }} style={styles.listItemImageLarge} />
-        
+        <Text style={styles.listItemDescription}> {item.description}</Text>
         <Text style={styles.listItemTitle}>{item.title}</Text>
-        <Text style={styles.listItemDescription}>
-          {item.description}
-        </Text>
       </View>
     )}
   />

@@ -16,7 +16,7 @@ const Login = () => {
 
   const login = async () => {
     try {
-      const response = await fetch('https://ifood-backend-aedi.onrender.com/api/auth/login', {
+      const response = await fetch('https://ifood-backend-aedi.onrender.com/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,13 +27,12 @@ const Login = () => {
           userType: 'CLIENT',
         }),
       });
-  
+
       const data = await response.json();
       console.log(data);
-  
+
       if (response.ok) {
         await AsyncStorage.setItem('userToken', data.token);
-  
         handleLogin();
       } else {
         Alert.alert("Erro", data.message || "Credenciais inválidas!");
@@ -43,7 +42,7 @@ const Login = () => {
       Alert.alert("Erro", "Erro ao tentar fazer login. Verifique sua conexão.");
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -54,35 +53,27 @@ const Login = () => {
           onPress={() => router.push("/")}
         />
       </View>
-      
-      <Text>Email</Text>
+
+      <Text style={styles.label}>Email</Text>
       <TextInput
         label="Email"
         value={email}
         onChangeText={setEmail}
         mode="outlined"
         keyboardType="email-address"
-        style={[styles.input, { borderColor: "gray" }]}
-        theme={{
-          colors: {
-            primary: "gray",
-          },
-        }}
+        style={styles.input}
+        theme={{ colors: { primary: "gray" } }}
       />
 
-      <Text>Senha</Text>
+      <Text style={styles.label}>Senha</Text>
       <TextInput
         label="Senha"
         value={password}
         onChangeText={setPassword}
-        secureTextEntry={true}
+        secureTextEntry
         mode="outlined"
-        style={[styles.input, { borderColor: "gray" }]}
-        theme={{
-          colors: {
-            primary: "gray",
-          },
-        }}
+        style={styles.input}
+        theme={{ colors: { primary: "gray" } }}
       />
 
       <TouchableOpacity onPress={login} style={styles.bottomButton}>

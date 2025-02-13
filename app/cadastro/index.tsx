@@ -3,7 +3,9 @@ import { useState } from "react";
 import { View, Text, TouchableOpacity, Alert, KeyboardAvoidingView, ScrollView, Platform } from "react-native";
 import { IconButton, TextInput } from "react-native-paper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TextInputMask } from 'react-native-masked-text';
 import styles from "../../src/styles/cadastro.styles";
+import Header from "../../src/components/header";
 
 const Cadastro = () => {
   const [email, setEmail] = useState('');
@@ -12,8 +14,18 @@ const Cadastro = () => {
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
   const [senha, setSenha] = useState('');
+  const [erroSenha, setErroSenha] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   const router = useRouter();
+
+  const onBackPress = () => {
+    router.push('/');
+  };
+
+  const limparMascara = (valor: string) => {
+    return valor.replace(/\D/g, ''); // Remove tudo que não for número
+  };
 
   const handleCadastro = async () => {
     if (!senha) {
@@ -22,21 +34,24 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await fetch('https://ifood-backend-aedi.onrender.com/api/auth/signup/client', {
+      const telefoneLimpo = limparMascara(telefone);
+      const cpfLimpo = limparMascara(cpf);
+
+      const response = await fetch('https://ifood-backend-aedi.onrender.com/auth/signup/client', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: nome,       
-          email: email,      
-          password: senha,  
-          cpf: cpf,          
-          phone: telefone,   
-          address: endereco, 
+          name: nome,
+          email: email,
+          password: senha,
+          cpf: cpfLimpo,
+          phone: telefoneLimpo,
+          address: endereco,
         }),
       });
-          
+
       const data = await response.json();
 
       if (response.ok) {
@@ -44,9 +59,8 @@ const Cadastro = () => {
         await AsyncStorage.setItem('userNome', nome);
         await AsyncStorage.setItem('userEndereco', endereco);
 
-
         Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
-        router.push('/login'); 
+        router.push('/login');
       } else {
         Alert.alert("Erro", data.message || "Erro ao cadastrar usuário.");
       }
@@ -64,21 +78,36 @@ const Cadastro = () => {
     }
   };
 
+  const validarSenha = (senha: string) => {
+    if (senha.length < 8) {
+      setErroSenha("*A senha deve ter no mínimo 8 caracteres.");
+      return false;
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(senha)) {
+      setErroSenha("*A senha deve conter um caractere especial.");
+      return false;
+    }
+    setErroSenha('');
+    return true;
+  };
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={{ flex: 1 }}
-    >
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <IconButton
-              icon="arrow-left"
-              iconColor="black"
-              size={30}
-              onPress={() => router.push('/')}
-            />
+            <Header onBackPress={onBackPress} />
           </View>
+
+          <Text>Informe seu nome</Text>
+          <TextInput
+            label="Nome"
+            value={nome}
+            onChangeText={setNome}
+            mode="outlined"
+            style={[styles.input, { borderColor: 'gray' }]}
+            theme={{ colors: { primary: 'gray' } }}
+          />
 
           <Text>Qual o seu E-mail?</Text>
           <TextInput
@@ -88,11 +117,7 @@ const Cadastro = () => {
             mode="outlined"
             keyboardType="email-address"
             style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
+            theme={{ colors: { primary: 'gray' } }}
           />
 
           <Text>Endereço de Entrega</Text>
@@ -102,74 +127,52 @@ const Cadastro = () => {
             onChangeText={setEndereco}
             mode="outlined"
             style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
+            theme={{ colors: { primary: 'gray' } }}
           />
 
           <Text>Número para Contato</Text>
-          <TextInput
-            label="Telefone"
+          <TextInputMask
+            type={'cel-phone'}
             value={telefone}
             onChangeText={setTelefone}
-            mode="outlined"
+            placeholder="Telefone"
+            style={[styles.maskInputs, { borderColor: 'gray' }]}
             keyboardType="phone-pad"
-            style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
           />
 
           <Text>Crie uma senha</Text>
           <TextInput
             label="Senha"
             value={senha}
-            onChangeText={setSenha}
+            onChangeText={(text) => {
+              setSenha(text);
+              validarSenha(text);
+            }}
             secureTextEntry={true}
             mode="outlined"
             style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
+            theme={{ colors: { primary: 'gray' } }}
           />
+          {erroSenha ? <Text style={{ color: 'red' }}>{erroSenha}</Text> : null}
 
           <Text>Insira seu CPF</Text>
-          <TextInput
-            label="Cpf"
+          <TextInputMask
+            type={'cpf'}
             value={cpf}
             onChangeText={setCpf}
-            mode="outlined"
-            style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
+            placeholder="CPF"
+            style={[styles.maskInputs, { borderColor: 'gray' }]}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
 
-          <Text>Informe seu nome</Text>
-          <TextInput
-            label="Nome"
-            value={nome}
-            onChangeText={setNome}
-            mode="outlined"
-            style={[styles.input, { borderColor: 'gray' }]}
-            theme={{
-              colors: {
-                primary: 'gray',
-              },
-            }}
-          />
-
-          <TouchableOpacity onPress={cadastrar} style={styles.bottomButton}>
+          <TouchableOpacity
+            onPress={cadastrar}
+            style={[styles.bottomButton, { pointerEvents: isFocused ? 'none' : 'auto' }]}
+          >
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
+
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

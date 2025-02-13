@@ -7,6 +7,7 @@ export interface PedidoItem {
   preco: number;
   quantidade: number;
   complementos: number[];
+  image: string
 }
 
 interface PedidosState {

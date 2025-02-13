@@ -9,6 +9,16 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 20,
     backgroundColor: 'white',
+    
+  },
+  maskInputs:{
+    borderColor:'gray',
+    borderWidth:1,
+    borderRadius:5,
+    height: 50,
+    padding: 15,
+    marginTop:10,
+    marginBottom:20
   },
  
   buttonText: {
