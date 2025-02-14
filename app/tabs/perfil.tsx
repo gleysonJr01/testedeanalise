@@ -45,6 +45,10 @@ const Perfil = () => {
     router.push('/detalhes-conta'); 
   };
 
+  const navigateToFavorits = () => {
+    router.push('/favoritos'); 
+  };
+
   if (!user) {
     return (
       <View style={styles.container}>
@@ -77,6 +81,20 @@ const Perfil = () => {
           iconColor="black"
           size={30}
           onPress={navigateToAccountDetails}
+        />
+      </View>
+      <View style={styles.detailsContainer}>
+        <IconButton
+          icon="heart"
+          iconColor="#F16463"
+          size={40}
+        />
+        <Text style={styles.detailsText}>Favoritos</Text>
+        <IconButton
+          icon="chevron-right"
+          iconColor="black"
+          size={30}
+          onPress={navigateToFavorits}
         />
       </View>
 

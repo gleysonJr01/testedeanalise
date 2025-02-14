@@ -38,8 +38,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 50,
-    marginBottom: 20,
+    marginVertical:10,
   },
   detailsText: {
     fontSize: 16,

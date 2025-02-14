@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { IconButton, TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../../src/styles/login.styles";
+import Header from "../../src/components/header";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,9 @@ const Login = () => {
     router.replace("/tabs");
   };
 
+  const onBackPress = () => {
+    router.push('/');
+  };
   const login = async () => {
     try {
       const response = await fetch('https://ifood-backend-aedi.onrender.com/auth/login', {
@@ -27,12 +31,18 @@ const Login = () => {
           userType: 'CLIENT',
         }),
       });
-
+  
       const data = await response.json();
       console.log(data);
-
+  
       if (response.ok) {
-        await AsyncStorage.setItem('userToken', data.token);
+        // Aqui estamos assumindo que a API retorna os dados do usuário, incluindo o nome, email e endereço
+        const { token, nome, email, endereco } = data;
+  
+        // Salva o token e os dados do usuário na AsyncStorage
+        await AsyncStorage.setItem('userToken', token);
+      
+  
         handleLogin();
       } else {
         Alert.alert("Erro", data.message || "Credenciais inválidas!");
@@ -42,16 +52,13 @@ const Login = () => {
       Alert.alert("Erro", "Erro ao tentar fazer login. Verifique sua conexão.");
     }
   };
+  
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <IconButton
-          icon="arrow-left"
-          iconColor="black"
-          size={30}
-          onPress={() => router.push("/")}
-        />
+      <Header onBackPress={onBackPress} />
+
       </View>
 
       <Text style={styles.label}>Email</Text>

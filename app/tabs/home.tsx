@@ -94,24 +94,29 @@ export default function Home() {
   return (
     
     <ScrollView style={styles.container}>
+     <View style={{ flexDirection: 'row', marginTop: 20,  }}>
       <View style={{
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft:120,
         backgroundColor: '#fff',
-        marginTop:20
       }}>
-         <Header />
-
-        <TouchableOpacity>
-         <IconButton
-         icon="bell-ring"
-         iconColor='red'
-         size={20}
-         onPress={() => console.log('Pressed')}
-         ></IconButton>
-        </TouchableOpacity>
+        <Header />
       </View>
+
+      <TouchableOpacity>
+        <IconButton
+          icon="bell-ring"
+          iconColor="red"
+          size={20}
+          onPress={() => console.log('Pressed')}
+          style={{
+            marginLeft: 90
+          }}
+        />
+      </TouchableOpacity>
+    </View>
+
 
 
      

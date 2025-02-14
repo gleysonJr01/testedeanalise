@@ -141,6 +141,8 @@ const Cadastro = () => {
           />
 
           <Text>Crie uma senha</Text>
+          {erroSenha ? <Text style={{ color: 'red' }}>{erroSenha}</Text> : null}
+
           <TextInput
             label="Senha"
             value={senha}
@@ -153,7 +155,6 @@ const Cadastro = () => {
             style={[styles.input, { borderColor: 'gray' }]}
             theme={{ colors: { primary: 'gray' } }}
           />
-          {erroSenha ? <Text style={{ color: 'red' }}>{erroSenha}</Text> : null}
 
           <Text>Insira seu CPF</Text>
           <TextInputMask
